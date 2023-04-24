@@ -1,3 +1,5 @@
+package query
+
 enum class QueryType(
     private val token: String
 ) {

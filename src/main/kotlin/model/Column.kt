@@ -1,4 +1,8 @@
 package model
 
-class Column {
+abstract class Column<T> {
+
+    abstract fun toColumnEntry(value: T): String
+
+    abstract fun toColumnValue(entry: String): T
 }

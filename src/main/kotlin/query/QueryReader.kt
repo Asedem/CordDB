@@ -1,3 +1,5 @@
+package query
+
 class QueryReader(
     private val statement: String,
     private val inserts: Array<out Any>
