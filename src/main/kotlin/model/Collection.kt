@@ -1,4 +1,8 @@
 package model
 
-class Collection {
+class Collection(
+    private val name: String
+) {
+
+    private lateinit var rows: Array<Row>
 }

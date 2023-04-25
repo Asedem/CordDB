@@ -1,3 +1,4 @@
+import model.Database
 import net.dv8tion.jda.api.JDA
 import net.dv8tion.jda.api.JDABuilder
 import net.dv8tion.jda.api.OnlineStatus
@@ -14,7 +15,6 @@ class CordDB(
 ) {
 
     private val jda: JDA
-    private var guild: Guild? = null;
     private var logChannel: TextChannel? = null;
 
     init {
@@ -24,10 +24,18 @@ class CordDB(
             .build()
     }
 
-    fun connectToServer() {
-        this.guild = this.jda.getGuildById(this.serverId)
-        if (this.guild == null) return
-        this.logChannel = this.guild!!.getTextChannelById(this.channelId)
+    fun connect() {
+        val guild: Guild = this.jda.getGuildById(this.serverId) ?: return
+        this.logChannel = guild.getTextChannelById(this.channelId)
+    }
+
+    fun disconnect() { this.logChannel = null }
+
+    fun connected(): Boolean = this.logChannel != null
+
+    fun getServerDatabase(): Database? {
+        if (!this.connected()) return null
+        return Database(this.logChannel!!)
     }
 
     fun query(statement: String, vararg inserts: Any) {
