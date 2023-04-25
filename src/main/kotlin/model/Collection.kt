@@ -4,5 +4,5 @@ class Collection(
     private val name: String
 ) {
 
-    private lateinit var rows: Array<Row>
+    private lateinit var dataSets: Array<DataSet>
 }

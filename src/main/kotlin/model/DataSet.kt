@@ -1,4 +1,4 @@
 package model
 
-class Row {
+class DataSet {
 }
