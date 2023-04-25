@@ -15,7 +15,7 @@ class CordDB(
 ) {
 
     private val jda: JDA
-    private var logChannel: TextChannel? = null;
+    private var logChannel: TextChannel? = null
 
     init {
         jda = JDABuilder.createDefault(token)
@@ -29,12 +29,12 @@ class CordDB(
         this.logChannel = guild.getTextChannelById(this.channelId)
     }
 
-    fun disconnect() { this.logChannel = null }
+    val disconnect = { this.logChannel = null }
 
-    fun connected(): Boolean = this.logChannel != null
+    var connected: Boolean = this.logChannel != null
 
     fun getServerDatabase(): Database? {
-        if (!this.connected()) return null
+        if (!this.connected) return null
         return Database(this.logChannel!!)
     }
 
