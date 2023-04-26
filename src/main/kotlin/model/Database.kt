@@ -11,13 +11,13 @@ class Database(
     private val collections: MutableList<Collection> = listOf<Collection>().toMutableList();
 
     init {
-        regenerateCollections()
+        this.regenerateCollections()
     }
 
     fun regenerateCollections() {
         this.collections.clear()
-        val history: MessageHistory = this.logChannel.history ?: return;
-        val messages: MutableList<Message> = history.retrievedHistory ?: return;
+        val history: MessageHistory = this.logChannel.history ?: return
+        val messages: MutableList<Message> = history.retrievedHistory
         messages.forEach { collections.add(Collection(it.contentRaw.split(" | ")[0])) }
     }
 }
