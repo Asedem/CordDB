@@ -8,7 +8,7 @@ class Database(
     private val logChannel: TextChannel
 ) {
 
-    private val collections: MutableList<Collection> = listOf<Collection>().toMutableList();
+    private val collections: MutableList<Collection> = listOf<Collection>().toMutableList()
 
     init {
         this.regenerateCollections()
